@@ -18,23 +18,27 @@ var App = {
   },
 
   // Put message in server
-  post: function(callback = ()=>{}) {
-    Parse.create((data) => {
+  // post: function(callback = ()=>{}) {
+  //   Parse.create((data) => {
 
-    });
+  //   });
 
-    callback();
-  },
+  //   callback();
+  // },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
+      Messages = data.results;
+      MessagesView.renderMessage(data);
       console.log(data);
 
       callback();
 
-      MessagesView.renderMessage(data);
+      // Push inbound messages to message storage
+      // MessagesView.renderMessage(data);
     });
+
   },
 
   startSpinner: function() {

@@ -11,16 +11,21 @@ var FormView = {
     event.preventDefault();
 
     // var messages = message.results; // This is an array of all messages in the server
-    // var message = {
-    //   username: App.username,
-    //   text: FormView.$form.find('#message').val(),
-    // };
+    var message = {
+      roomname: 'mainroom',
+      username: App.username,
+      text: FormView.$form.find('#message').val(),
+    };
 
-    // Parse.create(message, () => {
-    //   messages.add(message);
-    //   messagesView.render();
-    // });
+    Parse.create(message, () => {
+      Messages = Messages.concat(message);
+      MessagesView.renderMessage(message);
+      console.log(message);
+    });
     console.log('click!');
+    //refetch
+    App.fetch();
+
   },
 
   setStatus: function (active) {
