@@ -17,12 +17,23 @@ var App = {
 
   },
 
+  // Put message in server
+  post: function(callback = ()=>{}) {
+    Parse.create((data) => {
+
+    });
+
+    callback();
+  },
+
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
 
       callback();
+
+      MessagesView.renderMessage(data);
     });
   },
 
